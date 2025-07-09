@@ -1,0 +1,64 @@
+<section class="" th:fragment="contact">
+    <div class="container px-5">
+        <div class="bg-light rounded-4 py-5 px-4 px-md-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3 fs-1"
+                     style="width:5rem;"><i class="bi bi-envelope"></i></div>
+                <h1 class="fw-bolder text-gradient ">Melde dich bei mir</h1>
+                <p class="lead fw-normal text-muted mb-0">Lass uns gemeinsam etwas schaffen</p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <form th:action="@{/contact}" method="post" th:object="${contactForm}">
+
+                        <!-- Success Message -->
+                        <div th:if="${success}" class="alert alert-success text-center">
+                            Vielen Dank! Deine Nachricht wurde erfolgreich versendet.
+                        </div>
+
+                        <!-- Name -->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" th:field="*{name}" type="text" placeholder="Dein Name" required />
+                            <label for="name">Vollständiger Name</label>
+                        </div>
+                        <div th:if="${#fields.hasErrors('name')}" class="text-danger small mb-2">
+                            <p th:errors="*{name}">Name Fehler</p>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" th:field="*{email}" type="email" placeholder="name@example.com" required />
+                            <label for="email">E-Mail-Adresse</label>
+                        </div>
+                        <div th:if="${#fields.hasErrors('email')}" class="text-danger small mb-2">
+                            <p th:errors="*{email}">E-Mail Fehler</p>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" th:field="*{phone}" type="tel" placeholder="0123456789" required />
+                            <label for="phone">Telefonnummer</label>
+                        </div>
+                        <div th:if="${#fields.hasErrors('phone')}" class="text-danger small mb-2">
+                            <p th:errors="*{phone}">Telefon Fehler</p>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" th:field="*{message}" placeholder="Deine Nachricht..." style="height: 10rem" required></textarea>
+                            <label for="message">Nachricht</label>
+                        </div>
+                        <div th:if="${#fields.hasErrors('message')}" class="text-danger small mb-3">
+                            <p th:errors="*{message}">Nachricht Fehler</p>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" type="submit">Absenden</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
