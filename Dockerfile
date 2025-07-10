@@ -3,6 +3,8 @@ FROM eclipse-temurin:21-jdk-jammy as builder
 
 WORKDIR /app
 COPY . .
+# 🔧 Copy the local.properties from Render secrets
+COPY /etc/secrets/local.properties ./local.properties
 RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
