@@ -1,10 +1,7 @@
-# Use Java 21 for both build and runtime
 FROM eclipse-temurin:21-jdk-jammy as builder
 
 WORKDIR /app
 COPY . .
-# 🔧 Copy the local.properties from Render secrets
-COPY /etc/secrets/local.properties ./local.properties
 RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
@@ -12,6 +9,14 @@ RUN ./mvnw clean package -DskipTests
 FROM eclipse-temurin:21-jdk-jammy
 
 WORKDIR /app
+
+# Copy built jar
 COPY --from=builder /app/target/*.jar app.jar
+
+# Create entrypoint script
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+ENTRYPOINT ["/app/entrypoint.sh"]
