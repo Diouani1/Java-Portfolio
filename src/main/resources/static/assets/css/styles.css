@@ -11733,3 +11733,16 @@ html {
     left: -2vw;
   }
 }
+.icon-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  gap: 0.25rem;
+}
+
+.icon-link i {
+  font-size: 1.5rem; /* bigger icon */
+  line-height: 1;
+}
