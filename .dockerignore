@@ -1,0 +1,10 @@
+target/
+.idea/
+*.iml
+*.log
+.vscode/
+node_modules/
+*.class
+*.jar
+.env
+local.properties
