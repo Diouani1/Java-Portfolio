@@ -35,3 +35,8 @@ build/
 ### secret files ####
 local.properties
 
+
+
+/src/main/resources/static/assets/files/*
+
+
